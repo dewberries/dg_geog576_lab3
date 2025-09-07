@@ -12,7 +12,7 @@
 
   <!--Require the necessary modules-->
   <script>  
-  require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/BasemapGallery", "esri/widgets/Expand", "esri/widgets/Locate"], function(esriConfig, Map, MapView, BasemapGallery, Expand, Locate) {   
+  require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/BasemapGallery", "esri/widgets/Expand", "esri/widgets/Locate", "esri/widgets/Search"], function(esriConfig, Map, MapView, BasemapGallery, Expand, Locate, Search) {   
 
     esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurH86ushiKgIwvC2wUlTd8F37mnU6k2QLAYLvKFFXY-Svp4GXLaLK6wmU1pfw4HOZLw5wMM4ZTIYcQlQdbX2hUYzr1nTKbOH2WxbQhA9W0cg2c0dPR38_Nj1IAa7SL0SafHR9WYZIrtspWEzWRlfpen2vhiswXg_evBLbiQQolTMP7EA2wOnZLYXM8CKGJ7FOd2SsmxonwBdZtiwvChdqVzAhyrX11apebT2maTrE83I6AT1_H55nR2U5"
     
@@ -47,6 +47,15 @@
     })
 
     view.ui.add(locateWidget, "top-right");
+
+    const searchWidget = new Search({
+      view: view
+    });
+
+    view.ui.add(searchWidget, {
+      position: "top-center",
+    });
+
 
   });  
   </script>
