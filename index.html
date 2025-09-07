@@ -12,7 +12,7 @@
 
   <!--Require the necessary modules-->
   <script>  
-  require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/BasemapGallery", "esri/widgets/Expand"], function(esriConfig, Map, MapView, BasemapGallery, Expand) {   
+  require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/BasemapGallery", "esri/widgets/Expand", "esri/widgets/Locate"], function(esriConfig, Map, MapView, BasemapGallery, Expand, Locate) {   
 
     esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurH86ushiKgIwvC2wUlTd8F37mnU6k2QLAYLvKFFXY-Svp4GXLaLK6wmU1pfw4HOZLw5wMM4ZTIYcQlQdbX2hUYzr1nTKbOH2WxbQhA9W0cg2c0dPR38_Nj1IAa7SL0SafHR9WYZIrtspWEzWRlfpen2vhiswXg_evBLbiQQolTMP7EA2wOnZLYXM8CKGJ7FOd2SsmxonwBdZtiwvChdqVzAhyrX11apebT2maTrE83I6AT1_H55nR2U5"
     
@@ -42,6 +42,12 @@
       position: "top-right"
     });
 
+    let locateWidget = new Locate({
+      view: view,   // Attaches the Locate button to the view
+    })
+
+    view.ui.add(locateWidget, "top-right");
+
   });  
   </script>
 
@@ -52,13 +58,7 @@
 <body>
 
   <!--Div element to hold the map-->
-  <div id="viewDiv">
-    
-    <arcgis-map item-id="45b3b2fb35e94ab09381d0caa0da5946">
-      <arcgis-locate position="top-right" scale="5000"></arcgis-locate>
-    </arcgis-map>
-
-</div> 
+  <div id="viewDiv"></div> 
 
 </body>
 </html>
