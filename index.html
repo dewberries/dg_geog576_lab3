@@ -13,15 +13,16 @@
   <!--Require the necessary modules-->
   <script>  
   require(["esri/config",
-   "esri/Map", 
-   "esri/views/MapView", 
-   "esri/widgets/BasemapGallery", 
-   "esri/widgets/Expand", 
-   "esri/widgets/Locate", 
-   "esri/widgets/Search",
-   "esri/Graphic",  
-   "esri/layers/GraphicsLayer"], 
-   function(esriConfig, Map, MapView, BasemapGallery, Expand, Locate, Search, Graphic, GraphicsLayer) {   
+    "esri/Map", 
+    "esri/views/MapView", 
+    "esri/widgets/BasemapGallery", 
+    "esri/widgets/Expand", 
+    "esri/widgets/Locate", 
+    "esri/widgets/Search",
+    "esri/Graphic",  
+    "esri/layers/GraphicsLayer",
+    "esri/layers/FeatureLayer"], 
+    function(esriConfig, Map, MapView, BasemapGallery, Expand, Locate, Search, Graphic, GraphicsLayer, FeatureLayer) {   
 
     esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurH86ushiKgIwvC2wUlTd8F37mnU6k2QLAYLvKFFXY-Svp4GXLaLK6wmU1pfw4HOZLw5wMM4ZTIYcQlQdbX2hUYzr1nTKbOH2WxbQhA9W0cg2c0dPR38_Nj1IAa7SL0SafHR9WYZIrtspWEzWRlfpen2vhiswXg_evBLbiQQolTMP7EA2wOnZLYXM8CKGJ7FOd2SsmxonwBdZtiwvChdqVzAhyrX11apebT2maTrE83I6AT1_H55nR2U5"
     
@@ -78,8 +79,8 @@
       geometry: {
         type: "polyline", 
         paths: [
-          [-86.7842, 36.1658], // Tennessee State Capitol
-          [-86.7816, 36.1627]  // Center of Nashville
+          [-86.7842, 36.1658], 
+          [-86.7816, 36.1627]  
         ]
       },
       symbol: {
@@ -114,6 +115,24 @@
     });
 
     graphicsLayer.add(polygonGraphic);
+
+    // Define a pop-up for usaeduLayer
+    const popupEduusa = {
+      "title": "EDUs",
+      "content": "<b>Name:</b> {NAME}<br><b>Total Enrollment:</b> {TOT_ENROLL}<br>"
+    }
+
+    //adding the Const for the feature layer
+    const usaeduLayer = new FeatureLayer({
+    url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer",
+
+    //adding the popup here
+    outFields: ["NAME","TOT_ENROLL", "WEBADDR"],
+    popupTemplate: popupEduusa
+    });
+
+    //adding the feature layer to the map
+    map.add(usaeduLayer);
 
 
     const basemapGallery = new BasemapGallery({
