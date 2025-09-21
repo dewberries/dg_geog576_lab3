@@ -47,6 +47,7 @@
 
     const simpleMarkerSymbol = {  
       type: "simple-marker",  
+      style: "diamond",
       color: [196, 7, 232],  
       outline: {  
         color: [52, 6, 61], 
@@ -54,12 +55,66 @@
       }  
     };    
 
+    const popupTemplate = {
+        title: "{Name}",
+        content: "{Description}"
+    }
+    const attributes = {
+        Name: "Tennessee State Capitol",
+        Description: "The tennessee State Capitol is the home of the Tennessee General Assembly, the governor of Tennessee, and the Tennessee Supreme Court."
+    }    
+
     const pointGraphic = new Graphic({  
       geometry: point,  
-      symbol: simpleMarkerSymbol  
+      symbol: simpleMarkerSymbol,
+      attributes: attributes,
+      popupTemplate: popupTemplate  
     });
-    
+
+
     graphicsLayer.add(pointGraphic);
+
+    const lineGraphic = new Graphic({
+      geometry: {
+        type: "polyline", 
+        paths: [
+          [-86.7842, 36.1658], // Tennessee State Capitol
+          [-86.7816, 36.1627]  // Center of Nashville
+        ]
+      },
+      symbol: {
+        type: "simple-line", 
+        color: [226, 119, 40], 
+        width: 4
+      }
+    });
+
+    graphicsLayer.add(lineGraphic);
+
+
+    const polygonGraphic = new Graphic({
+      geometry: {
+        type: "polygon", 
+        rings: [
+          [-86.789, 36.167],
+          [-86.786, 36.167],
+          [-86.786, 36.165],
+          [-86.789, 36.165],
+          [-86.789, 36.167]
+        ]
+      },
+      symbol: {
+        type: "simple-fill", 
+        color: [227, 139, 79, 0.8], 
+        outline: {
+          color: [255, 255, 255],
+          width: 1
+        }
+      }
+    });
+
+    graphicsLayer.add(polygonGraphic);
+
 
     const basemapGallery = new BasemapGallery({
       view: view,
