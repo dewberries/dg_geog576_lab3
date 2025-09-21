@@ -12,7 +12,16 @@
 
   <!--Require the necessary modules-->
   <script>  
-  require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/BasemapGallery", "esri/widgets/Expand", "esri/widgets/Locate", "esri/widgets/Search"], function(esriConfig, Map, MapView, BasemapGallery, Expand, Locate, Search) {   
+  require(["esri/config",
+   "esri/Map", 
+   "esri/views/MapView", 
+   "esri/widgets/BasemapGallery", 
+   "esri/widgets/Expand", 
+   "esri/widgets/Locate", 
+   "esri/widgets/Search",
+   "esri/Graphic",  
+   "esri/layers/GraphicsLayer"], 
+   function(esriConfig, Map, MapView, BasemapGallery, Expand, Locate, Search, Graphic, GraphicsLayer) {   
 
     esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurH86ushiKgIwvC2wUlTd8F37mnU6k2QLAYLvKFFXY-Svp4GXLaLK6wmU1pfw4HOZLw5wMM4ZTIYcQlQdbX2hUYzr1nTKbOH2WxbQhA9W0cg2c0dPR38_Nj1IAa7SL0SafHR9WYZIrtspWEzWRlfpen2vhiswXg_evBLbiQQolTMP7EA2wOnZLYXM8CKGJ7FOd2SsmxonwBdZtiwvChdqVzAhyrX11apebT2maTrE83I6AT1_H55nR2U5"
     
@@ -26,6 +35,31 @@
       zoom: 10, // Zoom level
       container: "viewDiv" // Div element
     });
+
+    const graphicsLayer = new GraphicsLayer();  
+    map.add(graphicsLayer);
+
+    const point = {   
+      type: "point",  
+      longitude: -86.7842,    
+      latitude: 36.1658
+    };
+
+    const simpleMarkerSymbol = {  
+      type: "simple-marker",  
+      color: [196, 7, 232],  
+      outline: {  
+        color: [52, 6, 61], 
+        width: 1
+      }  
+    };    
+
+    const pointGraphic = new Graphic({  
+      geometry: point,  
+      symbol: simpleMarkerSymbol  
+    });
+    
+    graphicsLayer.add(pointGraphic);
 
     const basemapGallery = new BasemapGallery({
       view: view,
