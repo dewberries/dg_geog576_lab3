@@ -122,10 +122,24 @@
       "content": "<b>Name:</b> {Fac_Name}<br><b>City:</b> {City}<br>"
     }
 
+    const airportRenderer = {
+            "type": "simple",
+            "symbol": {
+              "type": "picture-marker",
+              "url": "https://github.com/dewberries/dg_geog576_lab2/blob/25e419e0d60d44e7519589479cd411391b60d7e0/local_airport_24dp_E3E3E3.png",
+              "width": "18px",
+              "height": "18px"
+            }
+          }
+
+
     //adding the Const for the feature layer
     const airportLayer = new FeatureLayer({
     url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/US_Airports_Geog576_Lab2/FeatureServer/0",
+    renderer: airportRenderer
+    });
 
+    
     //adding the popup here
     outFields: ["Fac_Name","City", "State_Name"],
     popupTemplate: popupAirport
