@@ -117,6 +117,23 @@
     graphicsLayer.add(polygonGraphic);
 
     // Define a pop-up for usaeduLayer
+    const popupAirport = {
+      "title": "Airports",
+      "content": "<b>Name:</b> {Fac_Name}<br><b>City:</b> {City}<br>"
+    }
+
+    //adding the Const for the feature layer
+    const airportLayer = new FeatureLayer({
+    url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/US_Airports_Geog576_Lab2/FeatureServer/0",
+
+    //adding the popup here
+    outFields: ["Fac_Name","City", "State_Name"],
+    popupTemplate: popupAirport
+    });
+
+    map.add(airportLayer);
+
+    // Define a pop-up for usaeduLayer
     const popupEduusa = {
       "title": "EDUs",
       "content": "<b>Name:</b> {NAME}<br><b>Total Enrollment:</b> {TOT_ENROLL}<br>"
@@ -131,15 +148,8 @@
     popupTemplate: popupEduusa
     });
 
-    //adding the feature layer to the map
     map.add(usaeduLayer);
 
-    //adding the Const for the feature layer
-    const airportLayer = new FeatureLayer({
-    url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/US_Airports_Geog576_Lab2/FeatureServer",
-
-    //adding the feature layer to the map
-    map.add(airportLayer);
 
 
     const basemapGallery = new BasemapGallery({
