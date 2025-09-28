@@ -134,6 +134,13 @@
     //adding the feature layer to the map
     map.add(usaeduLayer);
 
+    //adding the Const for the feature layer
+    const airportLayer = new FeatureLayer({
+    url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/US_Airports_Geog576_Lab2/FeatureServer",
+
+    //adding the feature layer to the map
+    map.add(airportLayer);
+
 
     const basemapGallery = new BasemapGallery({
       view: view,
