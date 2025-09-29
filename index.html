@@ -21,8 +21,9 @@
     "esri/widgets/Search",
     "esri/Graphic",  
     "esri/layers/GraphicsLayer",
-    "esri/layers/FeatureLayer"], 
-    function(esriConfig, Map, MapView, BasemapGallery, Expand, Locate, Search, Graphic, GraphicsLayer, FeatureLayer) {   
+    "esri/layers/FeatureLayer",
+    "esri/widgets/Editor"], 
+    function(esriConfig, Map, MapView, BasemapGallery, Expand, Locate, Search, Graphic, GraphicsLayer, FeatureLayer, Editor) {   
 
     esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurH86ushiKgIwvC2wUlTd8F37mnU6k2QLAYLvKFFXY-Svp4GXLaLK6wmU1pfw4HOZLw5wMM4ZTIYcQlQdbX2hUYzr1nTKbOH2WxbQhA9W0cg2c0dPR38_Nj1IAa7SL0SafHR9WYZIrtspWEzWRlfpen2vhiswXg_evBLbiQQolTMP7EA2wOnZLYXM8CKGJ7FOd2SsmxonwBdZtiwvChdqVzAhyrX11apebT2maTrE83I6AT1_H55nR2U5"
     
@@ -243,6 +244,34 @@ const heliportRenderer = {
     });
 
     view.ui.add(searchWidget, "top-left");
+
+
+        //adding the const for the feature layer
+    const myAirports = new FeatureLayer({
+    url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Airports_Geog576_Lab3/FeatureServer/0",
+    
+    //adding the popup here
+    outFields: ["AirportCode"],
+
+    });
+
+    //adding the feature layer to the map
+    map.add(myAirports);
+
+
+    // Set the point layer's LayerInfo
+    const pointInfos = {
+    layer: myAirports
+    }
+
+    // Begin Editor constructor
+    const editor = new Editor({
+    view: view,
+    layerInfos: [pointInfos]
+    }); // End Editor constructor
+
+    // Add the widget to the view
+    view.ui.add(editor, "top-right");
 
 
   });  
