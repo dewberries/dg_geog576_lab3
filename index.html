@@ -306,17 +306,14 @@ const heliportRenderer = {
     }); // End Editor constructor
 
     // Add the widget to the view
-    view.ui.add(editor, "top-right");
-
+    view.ui.add(editor, "bottom-right");
 
 
     let legend = new Legend({
-      view: view,
-      expandIconClass: "esri-icon-legend",
-      expanded: false 
+      view: view
     });
 
-    view.ui.add(legend, "top-right");
+    view.ui.add(legend, "bottom-left");
 
   });  
   </script>
